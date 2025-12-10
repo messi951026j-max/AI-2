@@ -1,0 +1,1131 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html><head>
+  
+  <meta charset="UTF-8">
+  <title>AI SmartGuard &#26234;&#24935;&#36628;&#21161;&#33258;&#21205;&#36650;&#26885;</title>
+
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <meta name="description" content="AI SmartGuard &#26234;&#24935;&#36628;&#21161;&#33258;&#21205;&#36650;&#26885;&#65306;AI &#36335;&#27841;&#36776;&#35672;&#12289;&#33258;&#21205;&#36991;&#38570;&#12289;&#26234;&#24935;&#23566;&#33322;&#33287;&#36300;&#20498;&#27714;&#25937;&#65292;&#28858;&#34892;&#21205;&#19981;&#20415;&#32773;&#25171;&#36896;&#26356;&#23433;&#20840;&#12289;&#26356;&#26377;&#23562;&#22196;&#30340;&#31227;&#21205;&#33258;&#30001;&#12290;">
+
+  
+  <style>
+    :root {
+      --primary: #2563eb;
+      --primary-soft: #60a5fa;
+      --primary-dark: #1d4ed8;
+      --secondary: #020617;
+      --bg: #020617;
+      --bg-soft: #0b1120;
+      --card: #020617;
+      --text: #e5e7eb;
+      --muted: #9ca3af;
+      --accent: #22c55e;
+      --danger: #f97373;
+      --radius: 18px;
+      --shadow-soft: 0 18px 45px rgba(15, 23, 42, 0.65);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family:
+        "Microsoft JhengHei",
+        "Noto Sans TC",
+        "PingFang TC",
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        system-ui,
+        sans-serif;
+      background: radial-gradient(circle at top, #0f172a 0, #020617 55%, #000 100%);
+      color: var(--text);
+      line-height: 1.7;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: linear-gradient(to right, rgba(15, 23, 42, 0.96), rgba(15, 23, 42, 0.9));
+      backdrop-filter: blur(18px);
+      border-bottom: 1px solid rgba(148, 163, 184, 0.28);
+    }
+
+    .nav {
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 0.7rem 1.25rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+
+    .logo {
+      font-weight: 800;
+      letter-spacing: 0.16em;
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      color: #e5e7eb;
+      text-shadow: 0 0 12px rgba(59, 130, 246, 0.55);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 1.25rem;
+      font-size: 0.88rem;
+    }
+
+    .nav-links a {
+      opacity: 0.76;
+      position: relative;
+      padding-bottom: 2px;
+    }
+
+    .nav-links a::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 0;
+      height: 2px;
+      border-radius: 999px;
+      background: linear-gradient(to right, var(--primary-soft), var(--accent));
+      transition: width 0.2s ease;
+    }
+
+    .nav-links a:hover {
+      opacity: 1;
+    }
+
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.6rem 1.4rem;
+      border-radius: 999px;
+      border: none;
+      cursor: pointer;
+      font-size: 0.88rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      transition: transform 0.12s ease, box-shadow 0.12s ease, background 0.12s ease;
+      white-space: nowrap;
+    }
+
+    .btn-primary {
+      background: radial-gradient(circle at top left, var(--primary-soft), var(--primary-dark));
+      color: #f9fafb;
+      box-shadow: 0 18px 40px rgba(37, 99, 235, 0.55);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-1px) scale(1.02);
+      box-shadow: 0 24px 55px rgba(37, 99, 235, 0.7);
+    }
+
+    .btn-outline {
+      border: 1px solid rgba(148, 163, 184, 0.8);
+      color: #e5e7eb;
+      background: rgba(15, 23, 42, 0.6);
+    }
+
+    .btn-outline:hover {
+      background: rgba(15, 23, 42, 0.95);
+      transform: translateY(-1px);
+    }
+
+    main {
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 1.8rem 1.25rem 3.5rem;
+    }
+
+    /* Hero */
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(0, 3.2fr) minmax(0, 3fr);
+      gap: 2.3rem;
+      padding: 2.4rem 1rem 2rem;
+      align-items: center;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      padding: 0.25rem 0.8rem;
+      border-radius: 999px;
+      background: rgba(37, 99, 235, 0.12);
+      color: var(--primary-soft);
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      backdrop-filter: blur(12px);
+      box-shadow: 0 10px 25px rgba(15, 23, 42, 0.4);
+    }
+
+    .hero-title {
+      font-size: clamp(2.2rem, 3.4vw + 1rem, 3.3rem);
+      line-height: 1.2;
+      margin: 0.9rem 0 0.85rem;
+      background: linear-gradient(135deg, #bfdbfe 0%, #e0f2fe 35%, #a5b4fc 70%, #f97316 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      text-shadow:
+        0 0 28px rgba(37, 99, 235, 0.55),
+        0 0 4px rgba(15, 23, 42, 0.9);
+    }
+
+    .hero-subtitle {
+      font-size: 0.98rem;
+      color: var(--muted);
+      max-width: 36rem;
+      text-shadow: 0 1px 2px rgba(0, 0, 0, 0.45);
+    }
+
+    .hero-cta {
+      margin-top: 1.4rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.85rem;
+      align-items: center;
+    }
+
+    .hero-cta .btn-outline {
+      font-weight: 600;
+    }
+
+    .hero-meta {
+      margin-top: 0.9rem;
+      font-size: 0.78rem;
+      color: var(--muted);
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+    }
+
+    .hero-meta span {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+    }
+
+    .dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 999px;
+      background: var(--accent);
+      box-shadow: 0 0 10px rgba(34, 197, 94, 0.8);
+    }
+
+    .hero-card {
+      background: radial-gradient(circle at top, #1e293b 0, #020617 55%);
+      border-radius: 26px;
+      padding: 1.25rem;
+      color: #e5e7eb;
+      box-shadow: var(--shadow-soft);
+      position: relative;
+      overflow: hidden;
+      border: 1px solid rgba(148, 163, 184, 0.35);
+      animation: floatIn 0.9s ease-out both;
+    }
+
+    @keyframes floatIn {
+      from {
+        opacity: 0;
+        transform: translateY(18px) scale(0.98);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
+
+    .hero-card::before {
+      content: "";
+      position: absolute;
+      inset: -40%;
+      background: radial-gradient(circle at top left, rgba(56, 189, 248, 0.16), transparent 55%);
+      opacity: 0.8;
+      pointer-events: none;
+    }
+
+    .hero-card-inner {
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-card img {
+      border-radius: 20px;
+      margin-bottom: 1rem;
+      border: 1px solid rgba(148, 163, 184, 0.5);
+    }
+
+    .hero-chip-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      margin-bottom: 0.8rem;
+      font-size: 0.7rem;
+    }
+
+    .chip {
+      padding: 0.18rem 0.6rem;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.6);
+      color: #c7d2fe;
+      background: linear-gradient(to right, rgba(15, 23, 42, 0.9), rgba(15, 23, 42, 0.6));
+      backdrop-filter: blur(8px);
+    }
+
+    .hero-card h3 {
+      margin: 0 0 0.4rem;
+      font-size: 1.02rem;
+      text-shadow: 0 0 12px rgba(15, 23, 42, 0.9);
+    }
+
+    .hero-card p {
+      font-size: 0.86rem;
+      color: #cbd5f5;
+    }
+
+    .pill-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.45rem;
+      font-size: 0.72rem;
+      margin-top: 0.5rem;
+    }
+
+    .pill {
+      padding: 0.18rem 0.6rem;
+      border-radius: 999px;
+      background: rgba(16, 185, 129, 0.16);
+      color: #bbf7d0;
+      border: 1px solid rgba(45, 212, 191, 0.7);
+    }
+
+    section {
+      margin-top: 3rem;
+    }
+
+    section h2 {
+      margin-top: 0;
+      margin-bottom: 0.6rem;
+      font-size: 1.6rem;
+      background: linear-gradient(120deg, #dbeafe, #fed7aa);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      text-shadow:
+        0 0 20px rgba(30, 64, 175, 0.55),
+        0 0 3px rgba(15, 23, 42, 0.9);
+    }
+
+    section > p.section-desc {
+      margin-top: 0;
+      margin-bottom: 1.7rem;
+      color: var(--muted);
+      font-size: 0.95rem;
+      max-width: 40rem;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1.25rem;
+    }
+
+    .card {
+      background: linear-gradient(145deg, rgba(15, 23, 42, 0.96), rgba(15, 23, 42, 0.85));
+      border-radius: var(--radius);
+      padding: 1.25rem;
+      box-shadow: 0 18px 40px rgba(15, 23, 42, 0.9);
+      border: 1px solid rgba(148, 163, 184, 0.55);
+    }
+
+    .card h3 {
+      margin-top: 0;
+      margin-bottom: 0.4rem;
+      font-size: 1rem;
+      color: #e5e7eb;
+    }
+
+    .card p {
+      margin: 0;
+      font-size: 0.9rem;
+      color: var(--muted);
+    }
+
+    .badge {
+      display: inline-block;
+      font-size: 0.72rem;
+      padding: 0.15rem 0.6rem;
+      border-radius: 999px;
+      background: rgba(37, 99, 235, 0.18);
+      color: var(--primary-soft);
+      margin-bottom: 0.5rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    .feature-list {
+      list-style: none;
+      padding: 0;
+      margin: 0.5rem 0 0;
+      font-size: 0.9rem;
+      color: #cbd5e1;
+    }
+
+    .feature-list li {
+      margin-bottom: 0.3rem;
+      padding-left: 1.1rem;
+      position: relative;
+    }
+
+    .feature-list li::before {
+      content: "&#9670;";
+      position: absolute;
+      left: 0;
+      font-size: 0.6rem;
+      top: 0.4rem;
+      color: var(--primary-soft);
+    }
+
+    .layout-2 {
+      display: grid;
+      grid-template-columns: minmax(0, 3fr) minmax(0, 3fr);
+      gap: 1.75rem;
+      align-items: start;
+    }
+
+    .tag-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      font-size: 0.78rem;
+      margin-bottom: 0.6rem;
+    }
+
+    .tag {
+      padding: 0.18rem 0.6rem;
+      border-radius: 999px;
+      background: rgba(15, 23, 42, 0.8);
+      color: #e5e7eb;
+      border: 1px solid rgba(148, 163, 184, 0.4);
+    }
+
+    .price-box {
+      background: radial-gradient(circle at top, #1d283a 0, #020617 55%);
+      color: #e5e7eb;
+      border-radius: 22px;
+      padding: 1.35rem 1.5rem;
+      box-shadow: var(--shadow-soft);
+      border: 1px solid rgba(148, 163, 184, 0.5);
+    }
+
+    .price-row {
+      display: flex;
+      gap: 1.5rem;
+      align-items: flex-end;
+      margin-bottom: 0.8rem;
+    }
+
+    .price-main {
+      font-size: 1.5rem;
+      font-weight: 800;
+      letter-spacing: 0.06em;
+    }
+
+    .price-sub {
+      font-size: 0.82rem;
+      color: #9ca3af;
+    }
+
+    .price-note {
+      font-size: 0.8rem;
+      color: #9ca3af;
+      margin: 0.4rem 0 0.8rem;
+    }
+
+    .price-list {
+      list-style: none;
+      padding: 0;
+      margin: 0.5rem 0 0.8rem;
+      font-size: 0.82rem;
+      color: #d1d5db;
+    }
+
+    .price-list li {
+      margin-bottom: 0.32rem;
+      display: flex;
+      align-items: center;
+      gap: 0.35rem;
+    }
+
+    .dot-badge {
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      background: var(--accent);
+      flex-shrink: 0;
+      box-shadow: 0 0 12px rgba(34, 197, 94, 0.9);
+    }
+
+    .scenario-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 1.25rem;
+    }
+
+    .scenario {
+      background: radial-gradient(circle at top left, rgba(30, 64, 175, 0.7), rgba(15, 23, 42, 0.95));
+      border-radius: var(--radius);
+      padding: 1.1rem 1.1rem;
+      display: grid;
+      grid-template-columns: minmax(0, 1.6fr) minmax(0, 1.4fr);
+      gap: 0.85rem;
+      align-items: center;
+      border: 1px solid rgba(148, 163, 184, 0.7);
+      box-shadow: var(--shadow-soft);
+    }
+
+    .scenario h3 {
+      margin: 0 0 0.35rem;
+      font-size: 0.98rem;
+      color: #f9fafb;
+    }
+
+    .scenario p {
+      margin: 0;
+      font-size: 0.85rem;
+      color: #dbeafe;
+    }
+
+    .scenario img {
+      border-radius: 12px;
+      border: 1px solid rgba(191, 219, 254, 0.7);
+    }
+
+    .scenario-label {
+      font-size: 0.7rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: var(--danger);
+      margin-bottom: 0.2rem;
+    }
+
+    .list-check {
+      list-style: none;
+      padding: 0;
+      margin: 0.35rem 0 0;
+      font-size: 0.85rem;
+      color: #e5e7eb;
+    }
+
+    .list-check li {
+      margin-bottom: 0.26rem;
+      padding-left: 1.1rem;
+      position: relative;
+    }
+
+    .list-check li::before {
+      content: "&#10003;";
+      position: absolute;
+      left: 0;
+      color: var(--accent);
+      font-size: 0.8rem;
+      top: 0.1rem;
+    }
+
+    /* Gallery */
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 0.75rem;
+    }
+
+    .gallery-item {
+      border-radius: 14px;
+      overflow: hidden;
+      position: relative;
+      border: 1px solid rgba(148, 163, 184, 0.5);
+      box-shadow: 0 14px 36px rgba(15, 23, 42, 0.85);
+    }
+
+    .gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transform: scale(1.02);
+      transition: transform 0.18s ease, filter 0.18s ease;
+    }
+
+    .gallery-item:hover img {
+      transform: scale(1.06);
+      filter: brightness(1.08);
+    }
+
+    .gallery-caption {
+      position: absolute;
+      inset: auto 0 0 0;
+      padding: 0.35rem 0.5rem;
+      font-size: 0.7rem;
+      background: linear-gradient(to top, rgba(15, 23, 42, 0.9), transparent);
+      color: #e5e7eb;
+    }
+
+    /* Contact */
+    .contact {
+      background: radial-gradient(circle at top, #1e293b 0, #020617 55%);
+      border-radius: 22px;
+      padding: 1.6rem 1.5rem;
+      box-shadow: var(--shadow-soft);
+      display: grid;
+      grid-template-columns: minmax(0, 3fr) minmax(0, 2.6fr);
+      gap: 1.6rem;
+      border: 1px solid rgba(148, 163, 184, 0.6);
+    }
+
+    .contact form {
+      display: grid;
+      gap: 0.85rem;
+    }
+
+    .field {
+      display: grid;
+      gap: 0.28rem;
+      font-size: 0.86rem;
+    }
+
+    .field label {
+      font-weight: 700;
+      color: #e5e7eb;
+      text-shadow: 0 0 10px rgba(15, 23, 42, 0.9);
+    }
+
+    .field input,
+    .field textarea,
+    .field select {
+      border-radius: 9px;
+      border: 1px solid rgba(148, 163, 184, 0.7);
+      padding: 0.55rem 0.65rem;
+      font-family: inherit;
+      font-size: 0.9rem;
+      outline: none;
+      resize: vertical;
+      min-height: 2.4rem;
+      background: rgba(15, 23, 42, 0.9);
+      color: #e5e7eb;
+    }
+
+    .field input::placeholder,
+    .field textarea::placeholder {
+      color: rgba(148, 163, 184, 0.7);
+    }
+
+    .field input:focus,
+    .field textarea:focus,
+    .field select:focus {
+      border-color: var(--primary-soft);
+      box-shadow: 0 0 0 1px rgba(96, 165, 250, 0.35);
+    }
+
+    .contact-aside {
+      font-size: 0.88rem;
+      color: var(--muted);
+      display: grid;
+      gap: 0.6rem;
+    }
+
+    .contact-aside h3 {
+      margin: 0 0 0.1rem;
+      font-size: 1rem;
+      color: #e5e7eb;
+      text-shadow: 0 0 10px rgba(15, 23, 42, 0.9);
+    }
+
+    .contact-list {
+      list-style: none;
+      padding: 0;
+      margin: 0.35rem 0 0.7rem;
+    }
+
+    .contact-list li {
+      margin-bottom: 0.26rem;
+    }
+
+    footer {
+      border-top: 1px solid rgba(148, 163, 184, 0.35);
+      padding: 1.1rem;
+      text-align: center;
+      font-size: 0.78rem;
+      color: var(--muted);
+      background: radial-gradient(circle at top, #020617, #020617 60%, #000 100%);
+    }
+
+    @media (max-width: 980px) {
+      .hero,
+      .layout-2,
+      .scenario-grid,
+      .contact {
+        grid-template-columns: 1fr;
+      }
+
+      .hero {
+        padding-top: 1.9rem;
+      }
+
+      .hero-card {
+        order: -1;
+      }
+
+      .gallery-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 780px) {
+      .nav-links {
+        display: none;
+      }
+
+      main {
+        padding-inline: 1rem;
+      }
+
+      section {
+        margin-top: 2.4rem;
+      }
+    }
+
+    @media (max-width: 580px) {
+      .gallery-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+  </style>
+</head><body>
+  <header>
+    </header>
+<div class="nav">
+      <div class="logo">AI SMARTGUARD</div>
+      <nav class="nav-links">
+        <a href="#product">&#29986;&#21697;&#29305;&#33394;</a>
+        <a href="#safety">&#23433;&#20840;&#38450;&#35703;</a>
+        <a href="#pricing">&#26041;&#26696;&#33287;&#20729;&#26684;</a>
+        <a href="#factory">&#24037;&#24288;&#33287;&#38272;&#24066;</a>
+        <a href="#gallery">&#24773;&#22659;&#29031;&#29255;</a>
+        <a href="#contact">&#35430;&#20056;&#35566;&#35426;</a>
+      </nav>
+      <a href="#contact" class="btn btn-outline">&#38928;&#32004;&#39636;&#39511;</a>
+    </div>
+
+  
+
+  <main>
+    <!-- Hero -->
+    <section class="hero">
+      </section></main>
+<div>
+        <div class="hero-badge">
+          <span>&#26032;&#21109;&#36628;&#20855;&#21697;&#29260;</span><span>AI &#26234;&#24935;&#36628;&#21161;&#33258;&#21205;&#36650;&#26885;</span>
+        </div>
+        <h1 class="hero-title">
+          &#35731;&#34892;&#21205;&#19981;&#20415;&#32773;&#65292;&#20063;&#33021;&#23433;&#24515;<br>&#12300;&#33258;&#24049;&#20986;&#38272;&#12301;&#30340;&#26234;&#33021;&#36650;&#26885;
+        </h1>
+        <p class="hero-subtitle">
+          AI SmartGuard &#26234;&#24935;&#36628;&#21161;&#33258;&#21205;&#36650;&#26885;&#65292;&#25972;&#21512;
+          <strong>AI &#36335;&#27841;&#36776;&#35672;&#12289;&#33258;&#21205;&#36991;&#38570;&#12289;&#26234;&#24935;&#23566;&#33322;&#33287;&#36300;&#20498;&#27714;&#25937;</strong>&#65292;
+          &#28858;&#36523;&#38556;&#32773;&#33287;&#38263;&#32773;&#25171;&#36896;&#26356;&#23433;&#20840;&#12289;&#26377;&#23562;&#22196;&#12289;&#30495;&#27491;&#21487;&#20197;&#12300;&#19968;&#20491;&#20154;&#20063;&#25954;&#20986;&#38272;&#12301;&#30340;&#31227;&#21205;&#33258;&#30001;&#12290;
+        </p>
+
+        <div class="hero-cta">
+          <a href="#contact" class="btn btn-primary">&#38928;&#32004;&#38272;&#24066;&#35430;&#20056;</a>
+          <a href="#pricing" class="btn btn-outline">&#20102;&#35299;&#31199;&#36035; / &#35036;&#21161;&#26041;&#26696;</a>
+        </div>
+
+        <div class="hero-meta">
+          <span><span class="dot"></span> &#33287;&#37291;&#38498;&#12289;&#24489;&#20581;&#20013;&#24515;&#20849;&#21516;&#28204;&#35430;&#39511;&#35657;</span>
+          <span><span class="dot"></span> &#25903;&#25588;&#36300;&#20498;&#20597;&#28204;&#33287; GPS &#23478;&#23660;&#36890;&#30693;</span>
+        </div>
+      </div>
+
+
+      <aside class="hero-card">
+        </aside>
+<div class="hero-card-inner">
+          <!-- &#23526;&#38555;&#36617;&#20154;&#36939;&#34892;&#29031;&#29255; -->
+          <img src="images/wheelchair-running.jpg" alt="AI &#26234;&#24935;&#36628;&#21161;&#33258;&#21205;&#36650;&#26885;&#23526;&#38555;&#36617;&#20154;&#36939;&#34892;&#29031;&#29255;">
+          <div class="hero-chip-row">
+            <span class="chip">AI &#36335;&#27841;&#20597;&#28204;</span>
+            <span class="chip">&#33258;&#21205;&#21070;&#36554;&#36991;&#38570;</span>
+            <span class="chip">&#26234;&#24935;&#23566;&#33322;</span>
+            <span class="chip">GPS &#21363;&#26178;&#23450;&#20301;</span>
+          </div>
+          <h3>AI SmartGuard &#26234;&#24935;&#36628;&#21161;&#33258;&#21205;&#36650;&#26885;</h3>
+          <p>
+            &#36879;&#36942;&#21069;&#26041; AI &#30456;&#27231;&#33287;&#24863;&#28204;&#22120;&#25345;&#32396;&#25475;&#25551;&#36335;&#27841;&#65292;&#21363;&#26178;&#36776;&#35672;&#22353;&#27934;&#12289;&#36870;&#21521;&#27231;&#36554;&#33287;&#31361;&#30332;&#38556;&#31001;&#29289;&#65292;
+            &#22312;&#21361;&#38570;&#30332;&#29983;&#21069;&#20027;&#21205;&#28187;&#36895;&#33287;&#36991;&#38283;&#65292;&#35731;&#20351;&#29992;&#32773;&#33287;&#23478;&#23660;&#37117;&#33021;&#25918;&#24515;&#12290;
+          </p>
+          <div class="pill-row">
+            <span class="pill">99% &#36991;&#38556;&#25104;&#21151;&#29575;&#65288;&#28204;&#35430;&#26781;&#20214;&#19979;&#65289;</span>
+            <span class="pill">&#32763;&#35206; 0.5 &#31186;&#20839;&#33258;&#21205;&#36890;&#22577;</span>
+            <span class="pill">&#25903;&#25588; Line / App &#23478;&#23660;&#36890;&#30693;</span>
+          </div>
+        </div>
+
+      
+    
+
+    <!-- Product Features -->
+    <section id="product">
+      </section>
+<h2>&#29986;&#21697;&#26680;&#24515;&#21151;&#33021;</h2>
+
+      
+<p class="section-desc">
+        &#19981;&#21482;&#26159;&#38651;&#21205;&#36650;&#26885;&#65292;&#32780;&#26159;&#32080;&#21512; AI&#12289;&#24863;&#28204;&#22120;&#33287;&#26234;&#24935;&#23566;&#33322;&#30340;
+        <strong>&#20027;&#21205;&#23433;&#20840;&#31227;&#21205;&#24179;&#21488;</strong>&#12290;
+      </p>
+
+
+      
+<div class="grid-3">
+        <div class="card">
+          <span class="badge">AI &#36335;&#27841;&#36776;&#35672;&#23433;&#20840;&#31995;&#32113;</span>
+          <h3>&#30475;&#24471;&#35211;&#21361;&#38570;&#12289;&#20027;&#21205;&#21070;&#36554;&#33287;&#36991;&#38570;</h3>
+          <ul class="feature-list">
+            <li>&#33258;&#21205;&#36776;&#35672;&#20154;&#34892;&#36947;&#23433;&#20840;&#24615;&#12289;&#22353;&#27934;&#12289;&#31309;&#27700;&#33287;&#38556;&#31001;&#29289;</li>
+            <li>&#20597;&#28204;&#20596;&#37002;&#20358;&#36554;&#12289;&#36870;&#21521;&#27231;&#36554;&#33287;&#24460;&#26041;&#36924;&#36817;&#36554;&#36635;</li>
+            <li>&#21361;&#38570;&#36317;&#38626;&#20839;&#21855;&#21205;&#32202;&#24613;&#21070;&#36554;&#33287;&#23433;&#20840;&#36991;&#35731;</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <span class="badge">&#26234;&#24935;&#23566;&#33322;&#39023;&#31034;&#22120;</span>
+          <h3>&#24171;&#20320;&#25214;&#21040;&#26368;&#23433;&#20840;&#12289;&#26368;&#22909;&#36208;&#30340;&#36335;</h3>
+          <ul class="feature-list">
+            <li>&#33258;&#21205;&#35215;&#21123;&#36991;&#38283;&#38542;&#26799;&#12289;&#20154;&#34892;&#36947;&#20013;&#26039;&#33287;&#26045;&#24037;&#36335;&#27573;</li>
+            <li>&#39023;&#31034;&#21363;&#26178;&#36335;&#27841;&#12289;&#28629;&#28369;&#35686;&#31034;&#33287;&#26367;&#20195;&#21205;&#32218;</li>
+            <li>&#25903;&#25588;&#35486;&#38899;&#23566;&#33322;&#33287;&#22823;&#23383;&#39636;&#20171;&#38754;&#65292;&#38263;&#32773;&#20063;&#33021;&#36629;&#39686;&#25805;&#20316;</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <span class="badge">&#36300;&#20498;&#20597;&#28204;&#33287;&#23478;&#23660;&#27714;&#25937;</span>
+          <h3>&#36935;&#21040;&#24847;&#22806;&#26178;&#65292;&#26885;&#23376;&#26367;&#20320;&#35498;&#35441;</h3>
+          <ul class="feature-list">
+            <li>&#32763;&#35206;&#25110;&#22196;&#37325;&#26179;&#21205;&#26178;&#65292;&#33258;&#21205;&#21028;&#26039;&#36300;&#20498;&#20107;&#20214;</li>
+            <li>&#21363;&#26178;&#30332;&#36865; GPS &#23450;&#20301;&#33287;&#21361;&#38570;&#29376;&#24907;&#32102;&#23478;&#23660;</li>
+            <li>&#25903;&#25588;&#19968;&#37749;&#27714;&#25937;&#65292;&#32879;&#32363; 119 &#25110;&#25351;&#23450;&#32202;&#24613;&#32879;&#32097;&#20154;</li>
+          </ul>
+        </div>
+      </div>
+
+    
+
+    <!-- Safety Scenarios -->
+    <section id="safety">
+      </section>
+<h2>&#23433;&#20840;&#39080;&#38570;&#24773;&#22659;&#33287;&#25033;&#35722;&#35373;&#35336;</h2>
+
+      
+<p class="section-desc">
+        &#30495;&#27491;&#30340;&#23433;&#20840;&#65292;&#19981;&#21482;&#26159;&#12300;&#19981;&#20986;&#20107;&#12301;&#65292;&#32780;&#26159;&#30070;&#24847;&#22806;&#30332;&#29983;&#26178;&#65292;&#31995;&#32113;&#30693;&#36947;&#22914;&#20309;&#24171;&#20320;
+        <strong>&#29229;&#21462;&#26178;&#38291;&#12289;&#30332;&#20986;&#27714;&#25937;&#12289;&#24310;&#38263;&#31561;&#24453;&#25937;&#25588;&#30340;&#27231;&#26371;</strong>&#12290;
+      </p>
+
+
+      
+<div class="scenario-grid">
+        <!-- &#31361;&#30332;&#20581;&#24247;&#32202;&#24613;&#29376;&#27841; -->
+        <article class="scenario">
+          </article><div>
+            <div class="scenario-label">MEDICAL EMERGENCY</div>
+            <h3>&#20351;&#29992;&#32773;&#31361;&#30332;&#20581;&#24247;&#21361;&#24613;&#29376;&#27841;</h3>
+            <p>
+              &#30070;&#20351;&#29992;&#32773;&#22240;&#20013;&#39080;&#12289;&#24515;&#32908;&#26775;&#22622;&#25110;&#26248;&#21413;&#22833;&#21435;&#24847;&#35672;&#12289;&#28961;&#27861;&#25805;&#20316;&#36650;&#26885;&#26178;&#65292;
+              AI &#26371;&#20027;&#21205;&#25509;&#25163;&#23433;&#20840;&#33287;&#27714;&#25937;&#27969;&#31243;&#12290;
+            </p>
+            <ul class="list-check">
+              <li>&#25569;&#25226;&#24863;&#28204;&#22120;&#33287;&#23039;&#24907;&#20597;&#28204;&#21028;&#26039;&#12300;&#38263;&#26178;&#38291;&#26410;&#25805;&#20316;&#65291;&#23039;&#21218;&#30064;&#24120;&#12301;</li>
+              <li>&#31995;&#32113;&#30332;&#20986;&#35486;&#38899;&#35426;&#21839;&#65292;&#33509;&#28961;&#22238;&#25033;&#31435;&#21363;&#21855;&#21205;&#33258;&#21205;&#27714;&#25937;&#24207;&#21015;</li>
+              <li>&#33258;&#21205;&#20572;&#38752;&#21040;&#23433;&#20840;&#36335;&#37002;&#12289;&#20659;&#36865; GPS &#20301;&#32622;&#20006;&#25765;&#25171; 119</li>
+            </ul>
+          </div>
+          <div>
+            <!-- &#22833;&#21435;&#24847;&#35672;&#65291;119 &#27714;&#25937;&#30059;&#38754; -->
+            <img src="images/medical-emergency-alert.jpg" alt="&#20351;&#29992;&#32773;&#31361;&#30332;&#20581;&#24247;&#29376;&#27841;&#26178;&#65292;&#36650;&#26885;&#33258;&#21205;&#27714;&#25937;&#31034;&#24847;&#22294;">
+          </div>
+        
+
+        <!-- &#26997;&#31471;&#27683;&#20505;&#33287;&#21463;&#22256; -->
+        <article class="scenario">
+          </article><div>
+            <div class="scenario-label">EXTREME WEATHER</div>
+            <h3>&#35946;&#22823;&#38632;&#12289;&#28153;&#27700;&#33287;&#26997;&#31471;&#22825;&#20505;&#21463;&#22256;</h3>
+            <p>
+              &#36973;&#36935;&#36229;&#20986;&#36650;&#26885;&#38450;&#27700;&#31561;&#32026;&#30340;&#35946;&#38632;&#25110;&#31361;&#30332;&#28153;&#27700;&#26178;&#65292;&#31995;&#32113;&#26371;&#20778;&#20808;&#30906;&#20445;&#20351;&#29992;&#32773;&#23433;&#20840;&#65292;
+              &#20006;&#24310;&#38263;&#31561;&#24453;&#25937;&#25588;&#30340;&#26178;&#38291;&#12290;
+            </p>
+            <ul class="list-check">
+              <li>&#33287;&#27683;&#35937;&#36039;&#26009;&#36899;&#21205;&#65292;&#38928;&#20808;&#36991;&#38283;&#20302;&#31402;&#12289;&#28153;&#27700;&#35686;&#25106;&#21312;</li>
+              <li>&#21463;&#22256;&#19988;&#38651;&#37327;&#20302;&#26044; 15% &#26178;&#65292;&#33258;&#21205;&#36914;&#20837;&#31680;&#33021;&#24453;&#25588;&#27169;&#24335;</li>
+              <li>&#38364;&#38281;&#38750;&#24517;&#35201;&#21151;&#33021;&#65292;&#20445;&#30041; GPS &#30332;&#20449;&#33287; SOS &#38275;&#29197;&#29128;&#34399;&#65292;&#21487;&#24453;&#27231;&#33267; 48 &#23567;&#26178;</li>
+            </ul>
+          </div>
+          <div>
+            <!-- &#28153;&#27700;&#65291;LOW POWER MODE &#22294;&#29255; -->
+            <img src="images/low-power-flood.jpg" alt="&#26997;&#31471;&#27683;&#20505;&#19979;&#36650;&#26885;&#36914;&#20837;&#20302;&#32791;&#38651;&#27714;&#25937;&#27169;&#24335;&#31034;&#24847;&#22294;">
+          </div>
+        
+      </div>
+
+    
+
+    <!-- Pricing & Plans -->
+    <section id="pricing">
+      </section>
+<h2>&#36092;&#36023;&#33287;&#31199;&#36035;&#26041;&#26696;</h2>
+
+      
+<p class="section-desc">
+        &#25105;&#20497;&#29702;&#35299;&#36628;&#20855;&#26159;&#38263;&#26399;&#25903;&#20986;&#65292;&#22240;&#27492;&#25552;&#20379;&#22810;&#31278;&#24392;&#24615;&#26041;&#26696;&#65292;&#20006;&#21332;&#21161;&#30003;&#35531;&#25919;&#24220;&#36628;&#20855;&#35036;&#21161;&#65292;
+        &#35731;&#30495;&#27491;&#38656;&#35201;&#30340;&#20154;&#36000;&#25812;&#24471;&#36215;&#12290;
+      </p>
+
+
+      
+<div class="layout-2">
+        <div>
+          <div class="tag-row">
+            <span class="tag">&#19968;&#27425;&#36023;&#26039;</span>
+            <span class="tag">&#20998;&#26399;&#20184;&#27454;</span>
+            <span class="tag">&#30701;&#26399;&#31199;&#36035;</span>
+            <span class="tag">&#25919;&#24220; / &#31038;&#31119;&#25505;&#36092;</span>
+          </div>
+          <p style="">
+            &#20381;&#21151;&#33021;&#19981;&#21516;&#65292;&#25105;&#20497;&#25552;&#20379; <strong>&#22522;&#30990;&#29256;</strong> &#33287; <strong>&#39640;&#38542;&#29256;</strong> &#27231;&#31278;&#65292;
+            &#25645;&#37197;&#20998;&#26399;&#12289;&#31199;&#36035;&#33287;&#27231;&#27083;&#23560;&#26696;&#26041;&#26696;&#12290;&#20063;&#21487;&#21332;&#21161;&#36628;&#20855;&#35036;&#21161;&#33287;&#20445;&#38570;&#30003;&#35531;&#12290;
+          </p>
+          <ul class="feature-list">
+            <li>&#22522;&#30990;&#29256;&#65306;&#36969;&#21512;&#26085;&#24120;&#20986;&#34892;&#33287;&#23478;&#29992;&#29872;&#22659;</li>
+            <li>&#39640;&#38542;&#29256;&#65306;&#22686;&#21152;&#36914;&#38542;&#24863;&#28204;&#22120;&#12289;AI &#27169;&#22411;&#33287;&#38642;&#31471;&#25976;&#25818;&#26381;&#21209;</li>
+            <li>&#25552;&#20379;&#32173;&#20462;&#20445;&#39178;&#26381;&#21209;&#33287;&#25945;&#32946;&#35347;&#32244;</li>
+          </ul>
+        </div>
+
+        <aside class="price-box">
+          </aside><div class="price-row">
+            <div>
+              <div class="price-main">NT$ 40,000 &#8211; 150,000</div>
+              <div class="price-sub">&#20381;&#21151;&#33021;&#31561;&#32026;&#33287;&#26041;&#26696;&#32780;&#23450;</div>
+            </div>
+            <div style="text-align: right;">
+              <div>&#25552;&#20379; 24 &#26399;&#20839;&#20998;&#26399;</div>
+              <div>&#30701;&#26399;&#31199;&#36035; &#27599;&#26376;&#35336;&#36027;</div>
+            </div>
+          </div>
+          <p class="price-note">
+            &#23526;&#38555;&#20729;&#26684;&#23559;&#20381;&#36984;&#37197;&#12289;&#25919;&#24220;&#35036;&#21161;&#33287;&#21512;&#20316;&#27231;&#27083;&#21512;&#32004;&#32780;&#35519;&#25972;&#65292;&#27489;&#36814;&#30041;&#19979;&#32879;&#32097;&#26041;&#24335;&#65292;
+            &#23560;&#20154;&#28858;&#24744;&#20272;&#31639;&#26368;&#21512;&#36969;&#26041;&#26696;&#12290;
+          </p>
+          <ul class="price-list">
+            <li><span class="dot-badge"></span> A &#26041;&#26696;&#65306;0 &#38957;&#26399;&#27454;&#65292;&#20998;&#26399;&#25892;&#25552;</li>
+            <li><span class="dot-badge"></span> B &#26041;&#26696;&#65306;&#26376;&#31199;&#26041;&#26696;&#65292;&#36969;&#21512;&#34899;&#24460;&#30701;&#26399;&#20351;&#29992;</li>
+            <li><span class="dot-badge"></span> C &#26041;&#26696;&#65306;&#25919;&#24220; / &#31038;&#31119;&#22823;&#37327;&#25505;&#36092;&#20778;&#24800;</li>
+            <li><span class="dot-badge"></span> &#20840;&#27231;&#19968;&#24180;&#20445;&#22266;&#65292;AI &#27169;&#22411;&#33287;&#23566;&#33322;&#32066;&#36523;&#22522;&#26412;&#26356;&#26032;</li>
+          </ul>
+          <a href="#contact" class="btn btn-primary" style="width: 100%;">&#32034;&#21462;&#35430;&#20056;&#33287;&#22577;&#20729;</a>
+        
+      </div>
+
+    
+
+    <!-- Factory & Store -->
+    <section id="factory">
+      </section>
+<h2>&#36234;&#21335;&#26234;&#24935;&#24037;&#24288;&#33287;&#22312;&#22320;&#38272;&#24066;</h2>
+
+      
+<p class="section-desc">
+        &#28858;&#20102;&#20860;&#39015;&#21697;&#36074;&#12289;&#25104;&#26412;&#33287;&#20379;&#25033;&#37832;&#31337;&#23450;&#65292;&#25105;&#20497;&#22312;
+        <strong>&#36234;&#21335;&#35373;&#31435;&#26234;&#24935;&#35069;&#36896;&#24037;&#24288;</strong>&#65292;&#20006;&#22312;&#21488;&#28771;&#33287;&#37291;&#30274;&#22120;&#26448;&#34892;&#21512;&#20316;&#23637;&#31034;&#25818;&#40670;&#65292;
+        &#35731;&#24744;&#21487;&#20197;&#23526;&#38555;&#39636;&#39511;&#29986;&#21697;&#12290;
+      </p>
+
+
+      
+<div class="layout-2">
+        <div>
+          <!-- &#36234;&#21335;&#24037;&#24288;&#22806;&#35264; -->
+          <img src="images/factory-vietnam.jpg" alt="AI SmartGuard &#36234;&#21335;&#26234;&#24935;&#36650;&#26885;&#24037;&#24288;&#22806;&#35264;" style="">
+          <p style="">
+            &#36234;&#21335; AI &#26234;&#24935;&#36650;&#26885;&#29983;&#29986;&#22522;&#22320;&#65292;&#23566;&#20837;&#27169;&#32068;&#21270;&#35373;&#35336;&#33287;&#31934;&#23526;&#35069;&#36896;&#27969;&#31243;&#65306;&#23567;&#25209;&#37327;&#25490;&#29986;&#12289;
+            &#38364;&#37749;&#38646;&#20214; JIT &#20379;&#25033;&#65292;&#30906;&#20445;&#21697;&#36074;&#31337;&#23450;&#20006;&#38477;&#20302;&#24235;&#23384;&#25104;&#26412;&#12290;
+          </p>
+        </div>
+        <div>
+          <!-- &#38272;&#24066;&#23637;&#31034; -->
+          <img src="images/store-showroom.jpg" alt="AI &#26234;&#24935;&#36650;&#26885;&#38272;&#24066;&#23637;&#31034;&#31354;&#38291;" style="">
+          <p style="">
+            &#38272;&#24066;&#33287;&#21512;&#20316;&#37291;&#30274;&#38498;&#25152;&#23637;&#31034;&#31354;&#38291;&#25552;&#20379;&#35430;&#20056;&#39636;&#39511;&#65292;&#29694;&#22580;&#23560;&#21729;&#23559;&#20381;&#20351;&#29992;&#24773;&#22659;&#35413;&#20272;&#36969;&#21512;&#30340;&#27231;&#31278;&#65292;
+            &#20006;&#25945;&#23416;&#22914;&#20309;&#25805;&#20316;&#33287;&#20445;&#39178;&#12290;
+          </p>
+          <ul class="feature-list">
+            <li>&#25903;&#25588;&#20491;&#20154;&#29992;&#25142;&#12289;&#37291;&#30274;&#38498;&#25152;&#33287;&#38263;&#29031;&#20013;&#24515;&#22296;&#38538;&#35430;&#20056;</li>
+            <li>&#25552;&#20379;&#28961;&#38556;&#31001;&#21205;&#32218;&#25945;&#23416;&#33287;&#23433;&#20840;&#25805;&#20316;&#35506;&#31243;</li>
+            <li>&#21487;&#38928;&#32004;&#21040;&#24220;&#35413;&#20272;&#29872;&#22659;&#33287;&#36335;&#32218;</li>
+          </ul>
+        </div>
+      </div>
+
+    
+
+    <!-- Gallery of generated images -->
+    <section id="gallery">
+      </section>
+<h2>&#30495;&#23526;&#24773;&#22659;&#29031;&#29255;&#33287;&#24037;&#24288;&#19968;&#35261;</h2>
+
+      
+<p class="section-desc">
+        &#30001;&#30740;&#30332;&#22296;&#38538;&#33287;&#21512;&#20316;&#37291;&#30274;&#21934;&#20301;&#20849;&#21516;&#25293;&#25885;&#30340;&#31034;&#24847;&#29031;&#29255;&#65292;&#21576;&#29694;&#26234;&#24935;&#36650;&#26885;&#22312;&#24037;&#24288;&#12289;&#38272;&#24066;&#33287;&#23526;&#38555;&#36947;&#36335;&#29872;&#22659;&#20013;&#30340;&#20351;&#29992;&#27171;&#35980;&#12290;
+      </p>
+
+
+      
+<div class="gallery-grid">
+        <div class="gallery-item">
+          <img src="images/factory-interior-wheelchair.jpg" alt="&#26234;&#24935;&#36650;&#26885;&#24037;&#24288;&#20839;&#37096;&#29983;&#29986;&#32218;">
+          <div class="gallery-caption">&#36234;&#21335;&#26234;&#24935;&#24037;&#24288;&#20839;&#37096;&#29983;&#29986;&#32218;</div>
+        </div>
+        <div class="gallery-item">
+          <img src="images/floor-plan-smart-factory.jpg" alt="&#26234;&#24935;&#36650;&#26885;&#24037;&#24288;&#24179;&#38754;&#37197;&#32622;&#22294;">
+          <div class="gallery-caption">&#26234;&#24935;&#36650;&#26885;&#24037;&#24288;&#24179;&#38754;&#37197;&#32622;&#22294;</div>
+        </div>
+        <div class="gallery-item">
+          <img src="images/store-showroom.jpg" alt="&#38272;&#24066;&#23637;&#31034;&#31354;&#38291;">
+          <div class="gallery-caption">&#38272;&#24066;&#23637;&#31034;&#33287;&#35430;&#20056;&#21312;</div>
+        </div>
+        <div class="gallery-item">
+          <img src="images/wheelchair-running.jpg" alt="&#38263;&#32773;&#20056;&#22352;&#26234;&#24935;&#36650;&#26885;&#19978;&#36335;">
+          <div class="gallery-caption">&#26234;&#24935;&#36650;&#26885;&#23526;&#38555;&#19978;&#36335;&#36939;&#34892;</div>
+        </div>
+        <div class="gallery-item">
+          <img src="images/hazard-warning-car.jpg" alt="&#26234;&#24935;&#36650;&#26885;&#20597;&#28204;&#24460;&#26041;&#36924;&#36817;&#36554;&#36635;">
+          <div class="gallery-caption">&#24460;&#26041;&#36554;&#36635;&#36924;&#36817;&#26178;&#30340;&#21361;&#38570;&#35686;&#31034;</div>
+        </div>
+        <div class="gallery-item">
+          <img src="images/medical-emergency-alert.jpg" alt="&#20351;&#29992;&#32773;&#22833;&#21435;&#24847;&#35672;&#33258;&#21205;&#27714;&#25937;">
+          <div class="gallery-caption">&#20351;&#29992;&#32773;&#31361;&#30332;&#20581;&#24247;&#29376;&#27841;&#65292;&#33258;&#21205;&#27714;&#25937;</div>
+        </div>
+        <div class="gallery-item">
+          <img src="images/rain-warning.jpg" alt="&#35946;&#38632;&#20013;&#21855;&#21205;&#21361;&#38570;&#38928;&#35686;">
+          <div class="gallery-caption">&#35946;&#38632;&#34892;&#36914;&#20013;&#21855;&#21205;&#21361;&#38570;&#38928;&#35686;</div>
+        </div>
+        <div class="gallery-item">
+          <img src="images/low-power-flood.jpg" alt="&#28153;&#27700;&#21463;&#22256;&#21855;&#21205;&#20302;&#32791;&#38651;&#24453;&#25588;&#27169;&#24335;">
+          <div class="gallery-caption">&#28153;&#27700;&#21463;&#22256;&#30340;&#20302;&#32791;&#38651;&#24453;&#25588;&#27169;&#24335;</div>
+        </div>
+      </div>
+
+    
+
+    <!-- Contact -->
+    <section id="contact">
+      </section>
+<h2>&#38928;&#32004;&#35430;&#20056; / &#21462;&#24471;&#23560;&#20154;&#35566;&#35426;</h2>
+
+      
+<p class="section-desc">
+        &#22635;&#23531;&#20197;&#19979;&#36039;&#26009;&#65292;&#25105;&#20497;&#26371;&#22312; 1&#8211;2 &#20491;&#24037;&#20316;&#22825;&#20839;&#33287;&#24744;&#32879;&#32363;&#12290;&#33509;&#24744;&#26159;
+        <strong>&#37291;&#30274;&#38498;&#25152;&#12289;&#24489;&#20581;&#20013;&#24515;&#25110;&#25919;&#24220;&#21934;&#20301;</strong>&#65292;&#20063;&#27489;&#36814;&#30041;&#19979;&#38656;&#27714;&#65292;&#25105;&#20497;&#21487;&#25552;&#20379;&#23560;&#26696;&#26041;&#26696;&#20171;&#32057;&#12290;
+      </p>
+
+
+      
+<div class="contact">
+        <form>
+          <div class="field">
+            <label for="name">&#22995;&#21517; / &#21934;&#20301;&#21517;&#31281;</label>
+            <input id="name" placeholder="&#20363;&#22914;&#65306;&#29579;&#23567;&#26126;&#12289;&#23433;&#21644;&#24489;&#20581;&#35386;&#25152;" type="text">
+          </div>
+          <div class="field">
+            <label for="phone">&#32879;&#32097;&#38651;&#35441;</label>
+            <input id="phone" placeholder="&#35531;&#30041;&#19979;&#21487;&#32879;&#32363;&#30340;&#25163;&#27231;&#25110;&#24066;&#35441;" type="tel">
+          </div>
+          <div class="field">
+            <label for="email">Email&#65288;&#21487;&#36984;&#22635;&#65289;</label>
+            <input id="email" placeholder="example@mail.com" type="email">
+          </div>
+          <div class="field">
+            <label for="type">&#24744;&#26159;&#65311;</label>
+            <select id="type">
+              <option>&#20491;&#20154; / &#23478;&#23660;</option>
+              <option>&#37291;&#30274;&#38498;&#25152;</option>
+              <option>&#38263;&#29031;&#27231;&#27083;</option>
+              <option>&#25919;&#24220; / &#31038;&#31119;&#21934;&#20301;</option>
+              <option>&#20854;&#20182;&#65288;&#20195;&#29702; / &#21512;&#20316;&#27965;&#35527;&#65289;</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="message">&#24819;&#20102;&#35299;&#30340;&#20839;&#23481;</label>
+            <textarea id="message" rows="4" placeholder="&#31777;&#21934;&#25551;&#36848;&#24744;&#30340;&#38656;&#27714;&#65292;&#20363;&#22914;&#65306;&#23478;&#20013;&#38263;&#32773;&#20986;&#38272;&#19978;&#19979;&#22369;&#12289;&#38656;&#35201;&#31199;&#36035; 3 &#20491;&#26376;&#12289;&#24489;&#20581;&#20013;&#24515;&#24819;&#23566;&#20837; 5 &#21488;&#20570;&#35430;&#29992;..."></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary">&#36865;&#20986;&#36039;&#26009;&#65288;&#21069;&#31471;&#31034;&#24847;&#34920;&#21934;&#65289;</button>
+        </form>
+
+        <div class="contact-aside">
+          <h3>&#20063;&#27489;&#36814;&#36879;&#36942;&#20854;&#20182;&#26041;&#24335;&#32879;&#32363;&#25105;&#20497;</h3>
+          <ul class="contact-list">
+            <li>&#23458;&#26381;&#23560;&#32218;&#65306;02-xxx-xxxx&#65288;&#36913;&#19968;&#33267;&#36913;&#20116; 09:00&#8211;18:00&#65289;</li>
+            <li>&#26381;&#21209;&#20449;&#31665;&#65306;service@aismguard.com</li>
+            <li>Line &#23448;&#26041;&#24115;&#34399;&#65306;@ai-smartguard</li>
+          </ul>
+          <p>
+            &#25105;&#20497;&#25215;&#35582;&#20381;&#29031;&#20491;&#36039;&#27861;&#33287; GDPR &#31934;&#31070;&#20445;&#35703;&#24744;&#30340;&#36039;&#26009;&#65292;&#25152;&#26377;&#23450;&#20301;&#33287;&#20581;&#24247;&#30456;&#38364;&#36039;&#35338;&#30342;&#32147;&#36942;&#21311;&#21517;&#21270;&#33287;&#23433;&#20840;&#21152;&#23494;&#34389;&#29702;&#12290;
+          </p>
+          <p style="">
+            &#8251;&#26412;&#38913;&#28858;&#31034;&#24847;&#32178;&#31449;&#31684;&#26412;&#65292;&#23526;&#38555;&#32879;&#32097;&#36039;&#35338;&#35531;&#20381;&#36020;&#22296;&#38538;&#27770;&#23450;&#24460;&#26367;&#25563;&#12290;
+          </p>
+        </div>
+      </div>
+
+    
+  
+
+  <footer>
+    © <span id="year">2025</span> AI SmartGuard &#26234;&#24935;&#36628;&#21161;&#33258;&#21205;&#36650;&#26885;&#65372;&#26234;&#24935;&#28961;&#38556;&#31001;&#22478;&#24066;&#30340;&#34892;&#21205;&#22821;&#20276;
+  </footer>
+
+  
+<script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+</body></html>
