@@ -170,18 +170,47 @@
       box-shadow: 0 10px 25px rgba(15, 23, 42, 0.4);
     }
 
+    /* &#21205;&#24907;&#40643;&#37329;&#38675;&#34425;&#27161;&#38988; */
     .hero-title {
       font-size: clamp(2.6rem, 3.8vw + 1rem, 3.9rem);
       line-height: 1.18;
       margin: 1rem 0 0.9rem;
-      color: #fefce8;
       letter-spacing: 0.08em;
-      -webkit-text-stroke: 1px rgba(250, 204, 21, 0.8);
+      background: linear-gradient(120deg, #fef9c3 0%, #fde68a 20%, #facc15 40%, #f97316 65%, #fb923c 85%, #fef9c3 100%);
+      background-size: 220% auto;
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      -webkit-text-stroke: 1px rgba(250, 204, 21, 0.9);
       text-shadow:
-        0 0 4px rgba(250, 204, 21, 0.9),
-        0 0 12px rgba(234, 179, 8, 0.95),
-        0 0 28px rgba(245, 158, 11, 0.9),
-        0 0 44px rgba(251, 191, 36, 0.9);
+        0 0 6px rgba(250, 204, 21, 0.9),
+        0 0 18px rgba(234, 179, 8, 0.95),
+        0 0 34px rgba(245, 158, 11, 0.9);
+      animation: glowShift 6s ease-in-out infinite alternate;
+    }
+
+    @keyframes glowShift {
+      0% {
+        background-position: 0% 50%;
+        text-shadow:
+          0 0 4px rgba(250, 204, 21, 0.8),
+          0 0 12px rgba(234, 179, 8, 0.9),
+          0 0 24px rgba(245, 158, 11, 0.8);
+      }
+      50% {
+        background-position: 100% 50%;
+        text-shadow:
+          0 0 6px rgba(252, 211, 77, 1),
+          0 0 22px rgba(251, 191, 36, 1),
+          0 0 46px rgba(248, 250, 252, 0.9);
+      }
+      100% {
+        background-position: 0% 50%;
+        text-shadow:
+          0 0 4px rgba(250, 204, 21, 0.85),
+          0 0 18px rgba(234, 179, 8, 0.95),
+          0 0 36px rgba(245, 158, 11, 0.95);
+      }
     }
 
     .hero-subtitle {
@@ -642,6 +671,36 @@
 
     .contact-list li { margin-bottom: 0.26rem; }
 
+    /* &#34920;&#21934;&#36865;&#20986;&#25104;&#21151;&#30340; inline &#29305;&#25928; bar&#65288;&#28961;&#21246;&#21246;&#29256;&#26412;&#65289; */
+    .success-inline {
+      opacity: 0;
+      transform: translateY(-8px);
+      pointer-events: none;
+      margin-bottom: 0.6rem;
+      border-radius: 999px;
+      font-size: 0.85rem;
+      padding: 0.55rem 1rem;
+      background: linear-gradient(110deg, #16a34a, #22c55e, #bbf7d0);
+      color: #022c16;
+      box-shadow: 0 0 0 0 rgba(34, 197, 94, 0);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      letter-spacing: 0.03em;
+      transition: opacity 0.25s ease, transform 0.25s ease;
+    }
+
+    .success-inline.show {
+      opacity: 1;
+      transform: translateY(0);
+      animation: successPulse 0.8s ease;
+    }
+
+    @keyframes successPulse {
+      0%   { box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.7); }
+      100% { box-shadow: 0 0 0 16px rgba(34, 197, 94, 0); }
+    }
+
     footer {
       border-top: 1px solid rgba(148, 163, 184, 0.35);
       padding: 1.1rem;
@@ -1016,35 +1075,42 @@
 
       
 <div class="contact">
-        <form>
-          <div class="field">
-            <label for="name">&#22995;&#21517; / &#21934;&#20301;&#21517;&#31281;</label>
-            <input id="name" placeholder="&#20363;&#22914;&#65306;&#29579;&#23567;&#26126;&#12289;&#23433;&#21644;&#24489;&#20581;&#35386;&#25152;" type="text">
+        <div>
+          <!-- &#34920;&#21934;&#36865;&#20986;&#25104;&#21151;&#30340; inline &#25552;&#31034;&#26781;&#65288;&#28961;&#21246;&#21246;&#65289; -->
+          <div id="successInline" class="success-inline">
+            &#24050;&#25104;&#21151;&#36865;&#20986;&#65292;&#25105;&#20497;&#24050;&#25910;&#21040;&#24744;&#30340;&#36039;&#26009;&#65292;&#23559;&#20760;&#24555;&#33287;&#24744;&#32879;&#32363;&#12290;
           </div>
-          <div class="field">
-            <label for="phone">&#32879;&#32097;&#38651;&#35441;</label>
-            <input id="phone" placeholder="&#35531;&#30041;&#19979;&#21487;&#32879;&#32363;&#30340;&#25163;&#27231;&#25110;&#24066;&#35441;" type="tel">
-          </div>
-          <div class="field">
-            <label for="email">Email&#65288;&#21487;&#36984;&#22635;&#65289;</label>
-            <input id="email" placeholder="example@mail.com" type="email">
-          </div>
-          <div class="field">
-            <label for="type">&#24744;&#26159;&#65311;</label>
-            <select id="type">
-              <option>&#20491;&#20154; / &#23478;&#23660;</option>
-              <option>&#37291;&#30274;&#38498;&#25152;</option>
-              <option>&#38263;&#29031;&#27231;&#27083;</option>
-              <option>&#25919;&#24220; / &#31038;&#31119;&#21934;&#20301;</option>
-              <option>&#20854;&#20182;&#65288;&#20195;&#29702; / &#21512;&#20316;&#27965;&#35527;&#65289;</option>
-            </select>
-          </div>
-          <div class="field">
-            <label for="message">&#24819;&#20102;&#35299;&#30340;&#20839;&#23481;</label>
-            <textarea id="message" rows="4" placeholder="&#31777;&#21934;&#25551;&#36848;&#24744;&#30340;&#38656;&#27714;&#65292;&#20363;&#22914;&#65306;&#23478;&#20013;&#38263;&#32773;&#20986;&#38272;&#19978;&#19979;&#22369;&#12289;&#38656;&#35201;&#31199;&#36035; 3 &#20491;&#26376;&#12289;&#24489;&#20581;&#20013;&#24515;&#24819;&#23566;&#20837; 5 &#21488;&#20570;&#35430;&#29992;..."></textarea>
-          </div>
-          <button type="submit" class="btn btn-primary">&#36865;&#20986;&#36039;&#26009;</button>
-        </form>
+
+          <form>
+            <div class="field">
+              <label for="name">&#22995;&#21517; / &#21934;&#20301;&#21517;&#31281;</label>
+              <input id="name" placeholder="&#20363;&#22914;&#65306;&#29579;&#23567;&#26126;&#12289;&#23433;&#21644;&#24489;&#20581;&#35386;&#25152;" type="text">
+            </div>
+            <div class="field">
+              <label for="phone">&#32879;&#32097;&#38651;&#35441;</label>
+              <input id="phone" placeholder="&#35531;&#30041;&#19979;&#21487;&#32879;&#32363;&#30340;&#25163;&#27231;&#25110;&#24066;&#35441;" type="tel">
+            </div>
+            <div class="field">
+              <label for="email">Email&#65288;&#21487;&#36984;&#22635;&#65289;</label>
+              <input id="email" placeholder="example@mail.com" type="email">
+            </div>
+            <div class="field">
+              <label for="type">&#24744;&#26159;&#65311;</label>
+              <select id="type">
+                <option>&#20491;&#20154; / &#23478;&#23660;</option>
+                <option>&#37291;&#30274;&#38498;&#25152;</option>
+                <option>&#38263;&#29031;&#27231;&#27083;</option>
+                <option>&#25919;&#24220; / &#31038;&#31119;&#21934;&#20301;</option>
+                <option>&#20854;&#20182;&#65288;&#20195;&#29702; / &#21512;&#20316;&#27965;&#35527;&#65289;</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="message">&#24819;&#20102;&#35299;&#30340;&#20839;&#23481;</label>
+              <textarea id="message" rows="4" placeholder="&#31777;&#21934;&#25551;&#36848;&#24744;&#30340;&#38656;&#27714;&#65292;&#20363;&#22914;&#65306;&#23478;&#20013;&#38263;&#32773;&#20986;&#38272;&#19978;&#19979;&#22369;&#12289;&#38656;&#35201;&#31199;&#36035; 3 &#20491;&#26376;&#12289;&#24489;&#20581;&#20013;&#24515;&#24819;&#23566;&#20837; 5 &#21488;&#20570;&#35430;&#29992;..."></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">&#36865;&#20986;&#36039;&#26009;&#65288;&#31034;&#24847;&#34920;&#21934;&#65289;</button>
+          </form>
+        </div>
 
         <div class="contact-aside">
           <h3>&#20063;&#27489;&#36814;&#36879;&#36942;&#20854;&#20182;&#26041;&#24335;&#32879;&#32363;&#25105;&#20497;</h3>
@@ -1079,7 +1145,7 @@
 
 
   <footer>
-    © <span id="year">2025</span> AI SmartGuard &#26234;&#24935;&#36628;&#21161;&#33258;&#21205;&#36650;&#26885;&#65372;&#26234;&#24935;&#28961;&#38556;&#31001;&#22478;&#24066;&#30340;&#34892;&#21205;&#22821;&#20276;
+    © <span id="year"></span> AI SmartGuard &#26234;&#24935;&#36628;&#21161;&#33258;&#21205;&#36650;&#26885;&#65372;&#26234;&#24935;&#28961;&#38556;&#31001;&#22478;&#24066;&#30340;&#34892;&#21205;&#22821;&#20276;
   </footer>
 
   
@@ -1094,15 +1160,27 @@
       document.getElementById("successModal").style.display = "none";
     }
 
-    // &#31561;&#25972;&#20491; DOM &#28310;&#20633;&#22909;&#20877;&#32129;&#23450;&#34920;&#21934;&#20107;&#20214;&#65292;&#36991;&#20813;&#34920;&#21934;&#12300;&#27794;&#21453;&#25033;&#12301;
+    function showInlineSuccess() {
+      const bar = document.getElementById("successInline");
+      if (!bar) return;
+      bar.classList.add("show");
+      // 4 &#31186;&#24460;&#33258;&#21205;&#28129;&#20986;
+      clearTimeout(window._successTimer);
+      window._successTimer = setTimeout(() => {
+        bar.classList.remove("show");
+      }, 4000);
+    }
+
     window.addEventListener("DOMContentLoaded", function () {
       const form = document.querySelector("form");
       if (!form) return;
 
       form.addEventListener("submit", function (e) {
-        e.preventDefault();      // &#19981;&#36865;&#21040;&#20282;&#26381;&#22120;&#65288;&#21069;&#31471;&#31034;&#24847;&#65289;
-        openModal();             // &#39023;&#31034;&#25104;&#21151;&#30059;&#38754;
-        form.reset();            // &#28165;&#31354;&#27396;&#20301;
+        e.preventDefault();          // demo &#29992;&#65292;&#19981;&#30495;&#30340;&#36865;&#21040;&#20282;&#26381;&#22120;
+        form.reset();                // &#28165;&#31354;&#27396;&#20301;
+        showInlineSuccess();         // &#19978;&#26041;&#25552;&#31034;&#26781;
+        openModal();                 // &#20013;&#38291;&#25104;&#21151;&#35222;&#31383;
+        setTimeout(closeModal, 2500); // 2.5 &#31186;&#24460;&#33258;&#21205;&#38364;&#38281;
       });
     });
   </script>
